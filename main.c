@@ -165,6 +165,7 @@ int main(int argc, char *argv[]){
                 break;
             case 4:
                 printf("\n 4");
+                Agregar_una_sede(inven);
                 break;
             case 5:
                 printf("\n 5");
@@ -189,6 +190,7 @@ int main(int argc, char *argv[]){
                 break;
             case 12:
                 printf("\n 12");
+                Agregar_piso(inven);
                 break;
             case 13:
                 printf("\n 13");
@@ -241,21 +243,10 @@ void Agregar_libro_nuevo(char *inven){
     Inventario->estante_seccion = (char*)malloc( strlen(tokenn) * sizeof(char));
     strcpy(Inventario->estante_seccion, tokenn);
 
-    printf("Ingrese el piso \n");
-    scanf("%s", &tokenn);
-    Inventario->piso = (char*)malloc( strlen(tokenn) * sizeof(char));
-    strcpy(Inventario->piso, tokenn);
-
     printf("Ingrese el edificio \n");
     scanf("%s", &tokenn);
     Inventario->edificio = (char*)malloc( strlen(tokenn) * sizeof(char));
     strcpy(Inventario->edificio, tokenn);
-
-    printf("Ingrese la sede \n");
-    scanf("%s", &tokenn);
-    Inventario->sede = (char*)malloc( strlen(tokenn) * sizeof(char));
-    strcpy(Inventario->sede, tokenn);
-
 
     Inventario = (inventario*) realloc(Inventario, (registryCount+1)*sizeof(Inventario));
     Inventario[registryCount] = *Inventario;
@@ -269,7 +260,22 @@ void Quitar_un_libro(FILE *file){
 };
 
 void Agregar_una_sede(FILE *file){
+//genero espacio para crear una persona
+    inventario *Inventario = (inventario *) malloc(sizeof(inventario));
+    //comienzo a pedir los datos
 
+    char tokenn = (char*)malloc( 50 * sizeof(char));
+    printf("Ingrese la sede \n");
+    scanf("%s", &tokenn);
+    //genero memoria para el nombre en nuestra estructura persona
+    Inventario->sede = (char*)malloc( strlen(tokenn) * sizeof(char));
+    //recien ahora tengo lugar para copiar el nombre
+    strcpy(Inventario->sede, tokenn);
+
+    Inventario = (inventario*) realloc(Inventario, (registryCount+1)*sizeof(Inventario));
+    Inventario[registryCount] = *Inventario;
+    registryCount++;
+    printf("Agregado con exito! \n");
 };
 
 void Quitar_una_sede(FILE *file){
@@ -300,7 +306,22 @@ void Eliminar_una_seccion(FILE *file){
 };
 
 void Agregar_piso(FILE *file){
+//genero espacio para crear una persona
+    inventario *Inventario = (inventario *) malloc(sizeof(inventario));
+    //comienzo a pedir los datos
 
+    char tokenn = (char*)malloc( 50 * sizeof(char));
+    printf("Ingrese el piso \n");
+    scanf("%s", &tokenn);
+    //genero memoria para el nombre en nuestra estructura persona
+    Inventario->piso = (char*)malloc( strlen(tokenn) * sizeof(char));
+    //recien ahora tengo lugar para copiar el nombre
+    strcpy(Inventario->piso, tokenn);
+
+    Inventario = (inventario*) realloc(Inventario, (registryCount+1)*sizeof(Inventario));
+    Inventario[registryCount] = *Inventario;
+    registryCount++;
+    printf("Agregado con exito! \n");
 };
 
 void Eliminar_piso(FILE *file){
